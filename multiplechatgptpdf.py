@@ -26,7 +26,8 @@ query = None
 if len(sys.argv) > 1:
     query = sys.argv[1]
 
-text_splitter = TokenTextSplitter(chunk_size=1000, chunk_overlap=0)
+# no tiene buena performance para el caso.
+text_splitter = TokenTextSplitter(chunk_size=1000, chunk_overlap=10)
 
 documents = []
 for file in os.listdir("data"):
@@ -47,7 +48,7 @@ for file in os.listdir("data"):
 # documents = loader.load()
 print(len(documents))
 
-text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=10)
+#text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=10)
 documents = text_splitter.split_documents(documents)
 
 embeddings = OpenAIEmbeddings()
