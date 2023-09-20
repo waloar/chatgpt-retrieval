@@ -4,7 +4,7 @@ import sys
 import openai
 from langchain.chains import ConversationalRetrievalChain, RetrievalQA, ChatVectorDBChain
 from langchain.chat_models import ChatOpenAI
-from langchain.document_loaders import UnstructuredPDFLoader
+from langchain.document_loaders import UnstructuredPDFLoader, PyPDFDirectoryLoader
 from langchain.embeddings import OpenAIEmbeddings
 # from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.llms import OpenAI
@@ -13,8 +13,9 @@ from langchain.text_splitter import CharacterTextSplitter, TokenTextSplitter
 from langchain.prompts import PromptTemplate
 
 import constants
-# REF  https://blog.devgenius.io/chat-with-document-s-using-openai-chatgpt-api-and-text-embedding-6a0ce3dc8bc8
+# REF https://blog.devgenius.io/chat-with-document-s-using-openai-chatgpt-api-and-text-embedding-6a0ce3dc8bc8
 # ref https://levelup.gitconnected.com/langchain-for-multiple-pdf-files-87c966e0c032
+# REF https://towardsdatascience.com/4-ways-of-question-answering-in-langchain-188c6707cc5a
 
 os.environ["OPENAI_API_KEY"] = constants.APIKEY
 
@@ -27,35 +28,35 @@ if len(sys.argv) > 1:
 
 text_splitter = TokenTextSplitter(chunk_size=1000, chunk_overlap=0)
 
-loader = UnstructuredPDFLoader("data/doc1332618715.pdf")
-#documents = loader.load_and_split(text_splitter)
+loader = PyPDFDirectoryLoader("data/")
 documents = loader.load()
-
-# text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-# texts = text_splitter.split_documents(documents)
-# qindex = VectorstoreIndexCreator().from_loaders([loader])
+print(len(documents))
 
 embeddings = OpenAIEmbeddings()
+# Vectoriza los documentos
 vectordb = Chroma.from_documents(
-    documents, embeddings, persist_directory='persist')
-vectordb.persist()
-#vectordb = Chroma(texts, embeddings)
-# vectordb = VectorstoreIndexCreator(
-#     embedding=embeddings).from_documents(texts)
+    documents, embeddings)
+# vectordb = Chroma.from_documents(
+#     documents, embeddings, persist_directory='persist')
+# vectordb.persist()
+
+# Aplica el modelo de ChatGPT para conversacion
 llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0)
 
-# Build prompt
+# Construye un templeta de prompt
 template = """Utiliza todas las piezas del contexto para responder a al pregunta. Si no contestas la pregutna, simplemente di que no lo sabes,no trataes de crear una respuesta. Utiliza tres oraciones como maximo. Manten las respuestas concisas. Siempre di "Gracias por preguntar" al final de cada respuesta. 
 {context}
 Question: {question}
 Helpful Answer:"""
 QA_CHAIN_PROMPT = PromptTemplate.from_template(template)
 
+# Utiliza la extraccion de datos conversacionales de pregunta y respuesta.
 
 chain = RetrievalQA.from_chain_type(
     llm,
     retriever=vectordb.as_retriever(search_kwargs={"k": 1}),
     return_source_documents=True,
+    verbose=True,
     chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
 )
 # chain=ChatVectorDBChain.from_llm(OpenAI(temperature=0, model_name="gpt-3.5-turbo"), vectordb, return_source_documents=True)
