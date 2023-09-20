@@ -63,7 +63,7 @@ vectordb.persist()
 llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0)
 
 # Construye un templeta de prompt
-template = """Utiliza todas las piezas del contexto para responder a al pregunta. Si no contestas la pregutna, simplemente di que no lo sabes,no trataes de crear una respuesta. Utiliza tres oraciones como maximo. Manten las respuestas concisas. Siempre di "Gracias por preguntar" al final de cada respuesta. 
+template = """Utiliza todas las piezas del contexto para responder a al pregunta. Si no contestas la pregunta, simplemente di que no lo sabes,no trataes de crear una respuesta. Utiliza tres oraciones como maximo. Manten las respuestas concisas. Siempre di "Gracias por preguntar" al final de cada respuesta. 
 {context}
 Question: {question}
 Helpful Answer:"""
