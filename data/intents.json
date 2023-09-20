@@ -1,0 +1,20 @@
+{
+    "intents": [{
+        "tag":"greetings",
+        "patterns":["Hi","Hi there","Hello","How are you","Hola"],
+        "responses":["Hello","Hi, for asking","Good to see you again"],
+        "context":[""]
+    },
+    {
+        "tag":"goodby",
+        "patterns":["Hi","Hi there","Hello","How are you","Hola"],
+        "responses":["Hello","Hi, for asking","Good to see you again"],
+        "context":[""]
+    },{
+        "tag":"noanswer",
+        "patterns":[],
+        "responses":["Sorry, I can't understand you","Disculpa, no te entiendo"],
+        "context":[""]
+    }
+    ]
+}
