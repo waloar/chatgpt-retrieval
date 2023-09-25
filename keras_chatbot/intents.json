@@ -1,0 +1,80 @@
+{
+    "intents": [{
+        "tag":"greetings",
+        "patterns":["Hi","Hi there","Hello","How are you","Hola","Is anyone there?"],
+        "responses":["Hello","Hi, how can I help you?","Hello, how can I help you?","Hello, fine, how can I help you?","Good to see you again"],
+        "context":[""]
+    },
+{
+        "tag":"noanswer",
+        "patterns":[],
+        "responses":["Sorry, I can't understand you","Disculpa, no te entiendo"],
+        "context":[""]
+    },
+  {"tag": "goodbye",
+   "patterns": ["Bye", "See you later", "Goodbye"],
+   "responses": ["See you later", "Have a nice day", "Bye! Come back again"],
+   "context":[""]
+},
+  {"tag": "thanks",
+   "patterns": ["Thanks",
+    "Thank you",
+    "That's helpful",
+    "Thanks for the help"],
+   "responses": ["Happy to help!",
+    "Any time!",
+    "My pleasure",
+    "You're most welcome!"],
+    "context":[""]
+},
+  {"tag": "about",
+   "patterns": ["Who are you?", "What are you?", "Who you are?"],
+   "responses": ["I'm baba ka dhaba, your bot assistant",
+    "I'm baba ka dhaba, an Artificial Intelligent bot"],
+    "context":[""]
+},
+  {"tag": "name",
+   "patterns": ["what is your name",
+    "what should I call you",
+    "whats your name?"],
+   "responses": ["You can call me baba ka dhaba.",
+    "Just call me as baba ka dhaba"],   
+    "context":[""]
+},
+  {"tag": "help",
+   "patterns": ["Could you help me?",
+    "give me a hand please",
+    "Can you help?",
+    "What can you do for me?",
+    "I need a support",
+    "I need a help",
+    "support me please"],
+   "responses": ["Tell me how can assist you",
+    "Tell me your problem to assist you",
+    "Yes Sure, How can I support you"],
+    "context":[""]
+},
+  {"tag": "food",
+   "patterns": ["I want to order some food",
+    "can i get something to eat",
+    "I want some food",
+    "i am hungry",
+    "need something im dying"],
+   "responses": ["which type of food you want",
+    "baba ka dhaba have plenty of dishes what you want"],
+    "context":[""]
+},
+  {"tag": "non veg",
+   "patterns": ["briyani", "chicken", "fish"],
+   "responses": ["you have to pay before cofirm your order",
+    "want to pay COD or online to confirm your order",
+    "pay first"],
+   "context":[""]
+},
+  {"tag": "veg",
+   "patterns": ["daal", "matter", "sabzi", "roti"],
+   "responses": ["you have to pay before cofirm your order",
+    "want to pay COD or online to confirm your order",
+    "pay first"],   "context":[""]
+}
+]}
