@@ -1,4 +1,4 @@
-# chatgpt-retrieval
+# Keras-NN Chatbot
 
 Simple script to use a ChatBot with Keras and Scikit-learn.
 
