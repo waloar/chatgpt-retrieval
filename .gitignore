@@ -4,3 +4,4 @@ persist/
 .DS_Store
 .chroma/
 constants.py
+.env/
