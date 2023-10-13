@@ -2,15 +2,11 @@ import os
 import sys
 
 import json 
-# import openai
 from langchain.chains import ConversationalRetrievalChain, RetrievalQA, LLMChain
 from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import UnstructuredPDFLoader, PyPDFDirectoryLoader
 from langchain.embeddings import OpenAIEmbeddings
-# from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 from langchain.llms import OpenAI
-# from langchain.vectorstores import Chroma
-# from langchain.text_splitter import CharacterTextSplitter, TokenTextSplitter
 from langchain.prompts import PromptTemplate
 
 import constants
