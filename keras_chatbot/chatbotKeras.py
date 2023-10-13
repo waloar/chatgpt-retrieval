@@ -1,4 +1,6 @@
 # https://www.kaggle.com/code/mysarahmadbhat/getting-started-with-chat-bot-using-keras/notebook
+# https://towardsdatascience.com/deep-learning-for-nlp-creating-a-chatbot-with-keras-da5ca051e051
+
 
 import json
 import numpy as np
@@ -10,7 +12,7 @@ from keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 
 #Define intents file
-with open('keras_chatbot/intents.json') as file:
+with open('chat-intents.json') as file:
     data = json.load(file)
 
 # Data Prep.
