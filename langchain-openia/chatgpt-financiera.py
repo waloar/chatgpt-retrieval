@@ -39,9 +39,9 @@ llm = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0)
 # Construye un templeta de prompt
 template = """Utiliza todas las piezas del Texto y de la Historia para responder.
  Debes realizar las siguiente acciones:
- 1. Resumir el texto en maximo 1 oracion delimitado entre <>.
+ 1. Resumir el texto en maximo 1 oracion y etiquetalo como <resumen>.
  2. Si existen nombres de personas separa el nombre de pila y etiquetarlo como <nombre> y el o los apellidos como <apellido>.
- 3. Si existe parte del texto numeros de 7 u 8 caracteres etiquetarlo como <dni>.
+ 3. Si existe parte del texto numeros de 7 u 8 caracteres etiquetarlo como <dni> y formatearlo como xx.xxx.xxx .
  4. Extraer la intencion en un maximo de 2 palabras y etiquetalo como <intencion>.
  5. Generar una respuesta con una frase amigable en una etiqueta <frase>.
  6. Si cononces el nombre de la persona incluye su nombre en la respuesta.
