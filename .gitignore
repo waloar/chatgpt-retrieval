@@ -5,3 +5,5 @@ persist/
 .chroma/
 constants.py
 .env/
+env/
+data/
