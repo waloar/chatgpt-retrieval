@@ -1,0 +1,79 @@
+    {
+        "intents": [{
+        "tag":"promesadepago",
+        "patterns":["Es para avisar que hoy hago el pago de una parte de lo que debo",
+        	"Buen dia voy a pagar la cuota adeudada el dia 5/10 ","Hoy paso a pagar la cuota sabes",
+        	"Hola buen día,,,, mañana pago la cuota, me podrías mandar el número para el pago facil x favor, gracias","OK ahora pago la última",
+        	"paso el lunes a la mañana mil gracias",
+        	"Dale gracias al mediodia estoy abonanfo"],
+        "responses":["Gracias por avisar", "recuerde que puede chequear online su estao de cuenta."],
+        "context":[""]
+    },
+
+    {
+        "tag":"infodepago",
+        "patterns":["Ahí pague la última cuota","Listo ya Page","Pague x el link keme pasaron","Hola buenas tardes te paso el comprobante de la segunda cuota de mi préstamo"],
+        "responses":["Gracias por avisar, recuerde que puede chequear online su estao de cuenta, en breve estaremos revisando la misma."],
+        "context":[""]
+    },
+  {
+        "tag":"soporte",
+        "patterns":["Tengo una deuda con  ustedes. Quise pagar las cuotas al link que me enviaron y no puedo acceder"],
+        "responses":["Gracias por avisar, enviaremos su inquietud al sector de soporte"],
+        "context":[""]
+    },
+{	
+        "tag":"infoprestamo",
+        "patterns":["Hola buenos días q requisitos necesito para un prestamo",
+        	"Es para saber de un prestamos",
+        	"Prestamos.. como son",
+        	"Hola quería saber si me podian brindar un crédito de 10 mil o 5 mil",
+        	"Y pasame los intereses yo preciso 120 mil peso",
+        	"Buen día. Para sacar un préstamo tengo que ir a san Fernando?",
+        	"Hola cómo estás de cuánto  sería el monto si pido un préstamo",
+        	"Quisiera renovar mi crédito"],
+        "responses":["Gracias por contactarnos, por favor diganos su DNI"],
+        "context":[""]
+    },
+    {
+
+        "tag":"pagocuotas",
+        "patterns":["Hola buenas tarde kisiera averiguar de mí cuotas","Es para saber de un prestamos","Quisiera saber si ya impacto mi pago .gracias","Buenas tardes, ésts es la última cuota verdad?","podrías desir xfa cuanto es mi cuota",
+        	"Hola qué tal yo quería saber cuánto es lo que tengo que pagar porque tenía que pagar en septiembre"],
+        "responses":["Gracias por contactarnos, por favor diganos su DNI"],
+        "context":[""]
+    },
+  {
+        "tag":"greetings",
+        "patterns":["Hola","Hola buen dia"],
+        "responses":["Hola, que tal?","Buen dia"],
+        "context":[""]
+    },
+
+{
+        "tag":"thankyou",
+        "patterns":["Gracias","Gracias igualmente","Ok ok muchas gracias ,gracias.","dale gracias","Mil gracias x td","Bueno listo Saludos","Muchísimas gracias"],
+        "responses":["De nada, que tenga un buen dia","De nada, que tenga un buen dia","De nada","De nada","De nada, que tenga un buen dia","que tenga un buen dia","De nada, que tenga un buen dia"],
+        "context":[""]
+    },
+{	
+        "tag":"saldodisponible",
+        "patterns":["Me podrias decir cuanto tengo disponible y las cuotas por favor.","Es para saber de un prestamos","OK hasta cuanto me pueden dar si pago ahora la última cuota","OK hasta cuanto me pueden dar si pago ahora la última cuota"],
+        "responses":["Hoa, por favor diganos su DNI para realizar la consulta "],
+        "context":[""]
+    },
+    {	
+        "tag":"dni",
+        "patterns":["Mi dni es 23649460","93834039","14.322.322","te dejo mi documento 56342123"],
+        "responses":["Consultamos..."],
+        "context":[""]
+    },
+
+{
+        "tag":"noanswer",
+        "patterns":[],
+        "responses":["Disculpa no te entiendo, ya te transferimos con un operador."],
+        "context":[""]
+    }
+]
+    }
