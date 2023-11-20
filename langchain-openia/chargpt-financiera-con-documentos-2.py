@@ -35,8 +35,8 @@ raw_documents = loader.load()
 print(len(raw_documents))
 
 # Divide los documentos en trozos de 1000 tokens
-# documents=text_splitter.split_documents(raw_documents)
-documents=raw_documents
+documents=text_splitter.split_documents(raw_documents)
+# documents=raw_documents
 
 embeddings = OpenAIEmbeddings()
 # Vectoriza los documentos
@@ -109,7 +109,7 @@ while True:
     result = chain({"query": query, "chat_history": chat_history})
     # result = chain({"query": query})
     print(result['result'])
-    # resultado =result['result']
+    resultado =result['result']
     # dato= json.loads(resultado)
     # print(dato["respuesta"])
 
@@ -118,5 +118,5 @@ while True:
 
     # print(chain.combine_documents_chain.memory)
 
-    chat_history.append((query, result['result']))
+    # chat_history.append((query, result['result']))
     query = None
