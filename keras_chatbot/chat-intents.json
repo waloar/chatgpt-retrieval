@@ -12,7 +12,7 @@
 
     {
         "tag":"infodepago",
-        "patterns":["Ahí pague la última cuota","Listo ya Page","Pague x el link keme pasaron","Hola buenas tardes te paso el comprobante de la segunda cuota de mi préstamo"],
+        "patterns":["Ahí pague la última cuota","Listo ya Pague","Pague x el link keme pasaron","Hola buenas tardes te paso el comprobante de la segunda cuota de mi préstamo"],
         "responses":["Gracias por avisar, recuerde que puede chequear online su estao de cuenta, en breve estaremos revisando la misma."],
         "context":[""]
     },

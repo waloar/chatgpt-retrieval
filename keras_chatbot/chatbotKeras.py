@@ -12,7 +12,7 @@ from keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 
 #Define intents file
-with open('chat-intents.json') as file:
+with open('./keras_chatbot/chat-intents.json') as file:
     data = json.load(file)
 
 # Data Prep.
