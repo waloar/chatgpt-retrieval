@@ -5,7 +5,7 @@ import openai
 import json
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
-from langchain.document_loaders import TextLoader,DirectoryLoader,UnstructuredFileLoader
+from langchain.document_loaders import TextLoader,DirectoryLoader,CSVLoader
 
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
@@ -27,15 +27,28 @@ query = None
 if len(sys.argv) > 1:
     query = sys.argv[1]
 
-text_splitter = TokenTextSplitter(chunk_size=1000, chunk_overlap=0)
+#text_splitter = TokenTextSplitter(chunk_size=1000, chunk_overlap=0)
+text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100, separator=".")
 
 loader = DirectoryLoader('./data/', glob="**/*.txt", loader_cls=TextLoader)
+
+csvloader = CSVLoader(file_path='./data/pp/nombre-de-comercios.csv',csv_args={
+        "delimiter": ",",
+        "quotechar": '"',
+        "fieldnames": ["nombre de comercio","Calle","Numero","localidad","rubro"],
+    },)
 
 raw_documents = loader.load()
 print(len(raw_documents))
 
+csv_documents = csvloader.load()
+print(len(csv_documents))
+
+raw_documents.extend(csv_documents)
+
 # Divide los documentos en trozos de 1000 tokens
 documents=text_splitter.split_documents(raw_documents)
+
 # documents=raw_documents
 
 embeddings = OpenAIEmbeddings()
@@ -56,8 +69,8 @@ template = """ Debes actuar como un agente de atencion a clientes. Debes dirigir
 Utiliza todas las piezas del texto y de la Historia para responder las preguntas. Si no contestas la pregunta, simplemente di que no lo sabes y que puedes consultarlo con un supervisor,no trates de crear una respuesta. Utiliza tres oraciones como maximo.
  Manten las respuestas concisas.
  Debes tener en consideracion:
- 1. Si el interlocutor quiere sacar un prestamo, o desea pagar una deuda, o saber el estado de su cuenta, verifica si tienes el dni y nombre del texto y de la historia, si no lo tienes, debes pedirle su nombre y su DNI.
- 2. Si el interlocutor desea que le transfieras con un agente de ventas, o un supervisor, asegurate de tener el <dni> <nombre> y <apellido>, debes pedirle amablemente su nombre y su DNI y luego finalizar la conversacion.
+ 1. Si el interlocutor quiere sacar un prestamo, o desea pagar una deuda, o saber el estado de su cuenta, verifica si tienes el dni y nombre del texto y de la historia, si no lo tienes, debes pedirle su nombre completo y su DNI.
+ 2. Si el interlocutor desea que le transfieras con un agente de ventas, o un supervisor, asegurate de tener el <dni> <nombre> y <apellido>, debes pedirle amablemente su nombre completo y su DNI y luego finalizar la conversacion.
  Ademas debes:
  1. Resumir el texto en una oracion como maximo y etiquetalo como <resumen>.
  2. Si existen nombres de personas separa el nombre de pila y etiquetarlo como <nombre> y el o los apellidos como <apellido>.
@@ -73,7 +86,7 @@ Utiliza todas las piezas del texto y de la Historia para responder las preguntas
  History: {chat_history}
  
  Question: {question}
-
+ 
 """
 
 
@@ -108,10 +121,13 @@ while True:
         sys.exit()
     result = chain({"query": query, "chat_history": chat_history})
     # result = chain({"query": query})
-    print(result['result'])
+    # print(result['result'])
     resultado =result['result']
-    # dato= json.loads(resultado)
-    # print(dato["respuesta"])
+    if "respuesta" in resultado:
+        dato= json.loads(resultado)
+        print(dato["respuesta"])
+    else:
+        print(result['result'])
 
     # print(result['result']['respuesta'])    
     
